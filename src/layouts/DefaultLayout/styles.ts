@@ -8,7 +8,7 @@ export const ContainerDefaultLayout = styled.div`
   margin: 5rem auto;
   padding: 2.5rem;
 
-  background-color: ${(props) => props.theme['gray-500']};
+  background-color: ${(props) => props.theme['gray-800']};
 
   border-radius: 0.5rem;
 `

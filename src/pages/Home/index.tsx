@@ -9,7 +9,7 @@ import {
   TaskInput,
   TaskTitle,
 } from './styles'
-import { Plus, Minus, Play } from 'phosphor-react'
+import { Play } from 'phosphor-react'
 
 export function Home() {
   return (

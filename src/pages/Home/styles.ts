@@ -19,8 +19,9 @@ const BaseInput = styled.input`
 
   height: 2.5rem;
 
-  font-size: 1.125rem;
+  font-size: 1.36rem;
   font-weight: bold;
+  color: ${(props) => props.theme['gray-100']};
   padding: 0 0.5rem;
 
   border: none;
@@ -41,7 +42,6 @@ const BaseInput = styled.input`
 
 export const TaskInput = styled(BaseInput)`
   flex: 1;
-
   &::-webkit-calendar-picker-indicator {
     display: none !important;
   }

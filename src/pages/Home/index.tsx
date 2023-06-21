@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import zod from 'zod'
@@ -13,6 +14,7 @@ import {
   TaskTitle,
 } from './styles'
 import { Play } from 'phosphor-react'
+import { differenceInSeconds } from 'date-fns'
 
 const newCycleFormValidationSchema = zod.object({
   task: zod.string().min(1, 'Informe a tarefa'),
@@ -21,7 +23,18 @@ const newCycleFormValidationSchema = zod.object({
 
 type NewCycleFormData = zod.infer<typeof newCycleFormValidationSchema>
 
+interface Cycle {
+  id: string
+  task: string
+  duration: number
+  startDate: Date
+}
+
 export function Home() {
+  const [cycles, setCyles] = useState<Cycle[]>([])
+  const [activeCycleId, setActiveCycleId] = useState<string | null>(null)
+  const [durationSecondPass, setDurationSecondPass] = useState(0)
+
   const { register, handleSubmit, watch, reset } = useForm<NewCycleFormData>({
     resolver: zodResolver(newCycleFormValidationSchema),
     defaultValues: {
@@ -30,13 +43,42 @@ export function Home() {
     },
   })
 
-  const hancleCreateNewCycle = (data: any) => {
-    console.log(data)
+  const hancleCreateNewCycle = (data: NewCycleFormData) => {
+    const newCycle: Cycle = {
+      id: String(new Date().getTime()),
+      task: data.task,
+      duration: data.duration,
+      startDate: new Date(),
+    }
+
+    setCyles((state) => [...state, newCycle])
+    setActiveCycleId(newCycle.id)
     reset()
   }
 
+  const activeCycle = cycles.find((cycle) => cycle.id === activeCycleId)
+
+  const totalSeconds = activeCycle ? activeCycle.duration * 60 : 0
+  const currentSeconds = activeCycle ? totalSeconds - durationSecondPass : 0
+
+  const minutesAmount = Math.floor(currentSeconds / 60)
+  const secondAmount = currentSeconds % 60
+
+  const minutes = String(minutesAmount).padStart(2, '0')
+  const seconds = String(secondAmount).padStart(2, '0')
+
   const task = watch('task')
   const isSubmitDisable = !task
+
+  useEffect(() => {
+    if (activeCycle) {
+      setInterval(() => {
+        setDurationSecondPass(
+          differenceInSeconds(new Date(), activeCycle.startDate),
+        )
+      }, 1000)
+    }
+  }, [activeCycle])
 
   return (
     <ContainerHome>
@@ -74,7 +116,7 @@ export function Home() {
           </TaskDuration>
         </HeaderForm>
 
-        <Counter />
+        <Counter minutes={minutes} seconds={seconds} />
         <StartCountdonwButton type="submit" disabled={isSubmitDisable}>
           <Play size={24} /> Começar
         </StartCountdonwButton>

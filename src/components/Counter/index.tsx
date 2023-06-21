@@ -1,13 +1,18 @@
 import { ContainerCounter } from './styles'
 
-export function Counter() {
+interface Prosp {
+  minutes: string
+  seconds: string
+}
+
+export function Counter(props: Prosp) {
   return (
     <ContainerCounter>
-      <span>0</span>
-      <span>0</span>
+      <span>{props.minutes[0]}</span>
+      <span>{props.minutes[1]}</span>
       <p>:</p>
-      <span>0</span>
-      <span>0</span>
+      <span>{props.seconds[0]}</span>
+      <span>{props.seconds[1]}</span>
     </ContainerCounter>
   )
 }

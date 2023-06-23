@@ -6,13 +6,15 @@ interface Prosp {
 }
 
 export function Counter(props: Prosp) {
+  const { minutes, seconds } = props
+
   return (
     <ContainerCounter>
-      <span>{props.minutes[0]}</span>
-      <span>{props.minutes[1]}</span>
+      <span>{minutes[0]}</span>
+      <span>{minutes[1]}</span>
       <p>:</p>
-      <span>{props.seconds[0]}</span>
-      <span>{props.seconds[1]}</span>
+      <span>{seconds[0]}</span>
+      <span>{seconds[1]}</span>
     </ContainerCounter>
   )
 }

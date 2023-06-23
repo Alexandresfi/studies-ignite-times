@@ -96,7 +96,7 @@ export const ContainerForm = styled.form`
   gap: 3.5rem;
 `
 
-export const StartCountdonwButton = styled.button`
+export const BaseCountdownButton = styled.button`
   width: 100%;
   height: 4rem;
 
@@ -105,7 +105,6 @@ export const StartCountdonwButton = styled.button`
   align-items: center;
   gap: 0.5rem;
 
-  background-color: ${(props) => props.theme['green-500']};
   border: none;
   border-radius: 8px;
 
@@ -116,12 +115,20 @@ export const StartCountdonwButton = styled.button`
 
   cursor: pointer;
 
-  &:not(:disabled):hover {
-    background-color: ${(props) => props.theme['green-700']};
-  }
-
   &:disabled {
     opacity: 0.7;
     cursor: not-allowed;
+  }
+`
+export const StartCountDownButton = styled(BaseCountdownButton)`
+  background-color: ${(props) => props.theme['green-500']};
+  &:not(:disabled):hover {
+    background-color: ${(props) => props.theme['green-700']};
+  }
+`
+export const StopCountDownButton = styled(BaseCountdownButton)`
+  background-color: ${(props) => props.theme['red-500']};
+  &:not(:disabled):hover {
+    background-color: ${(props) => props.theme['red-700']};
   }
 `

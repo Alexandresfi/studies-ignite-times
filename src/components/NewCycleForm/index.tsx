@@ -8,7 +8,7 @@ import {
   TaskTitle,
 } from './styles'
 import { useContext } from 'react'
-import { CyclesContext } from '../../pages/Home'
+import { CyclesContext } from '../../contexts/CyclesContext'
 
 export function NewCycleForm() {
   const { activeCycle } = useContext(CyclesContext)

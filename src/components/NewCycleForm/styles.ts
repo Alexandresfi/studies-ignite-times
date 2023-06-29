@@ -3,20 +3,33 @@ import styled from 'styled-components'
 export const HeaderForm = styled.div`
   display: flex;
   align-items: center;
-  flex-wrap: wrap;
   gap: 0.5rem;
+
+  @media (max-width: 908px) {
+    flex-direction: column;
+    align-items: baseline;
+  }
 `
 
 export const TaskTitle = styled.label`
   display: flex;
   align-items: center;
   gap: 0.5rem;
+
+  @media (max-width: 908px) {
+    flex-direction: column;
+    align-items: baseline;
+  }
 `
 
 export const TaskDuration = styled.label`
   display: flex;
   align-items: center;
   gap: 0.5rem;
+  @media (max-width: 908px) {
+    flex-direction: column;
+    align-items: baseline;
+  }
 `
 
 const BaseInput = styled.input`
@@ -37,11 +50,6 @@ const BaseInput = styled.input`
     font-size: 1.125rem;
     font-weight: bold;
     line-height: 100%;
-  }
-
-  &:focus {
-    box-shadow: none;
-    border-color: ${(props) => props.theme['green-500']};
   }
 `
 

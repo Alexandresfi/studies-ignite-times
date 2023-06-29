@@ -23,6 +23,8 @@ export function Counterdown() {
   useEffect(() => {
     if (activeCycle) {
       document.title = ` ignite timer ${minutes} : ${seconds}`
+    } else {
+      document.title = 'ignite timer'
     }
   }, [minutes, seconds, activeCycle])
 
@@ -32,14 +34,13 @@ export function Counterdown() {
       interval = setInterval(() => {
         const secondsDifference = differenceInSeconds(
           new Date(),
-          activeCycle.startDate,
+          new Date(activeCycle.startDate),
         )
 
         if (secondsDifference >= totalSeconds) {
           markCurrentCycleAsFinished()
           handleDurationSecondPass(totalSeconds)
           clearInterval(interval)
-          console.log(secondsDifference)
         } else {
           handleDurationSecondPass(secondsDifference)
         }

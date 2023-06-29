@@ -27,7 +27,8 @@ export const ContainerHeader = styled.header`
       }
 
       &:focus {
-        box-shadow: none;
+        box-shadow: rgb(0, 135, 95) 0px 0px 0px 2px;
+        color: ${(props) => props.theme['green-500']};
       }
     }
     &.active {

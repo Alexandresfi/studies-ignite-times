@@ -5,6 +5,10 @@ export const ContainerCounter = styled.div`
   align-items: center;
   gap: 1rem;
 
+  @media (max-width: 908px) {
+    gap: 0.5rem;
+  }
+
   span {
     max-width: 8rem;
     width: 100%;
@@ -23,6 +27,13 @@ export const ContainerCounter = styled.div`
     background-color: ${(props) => props.theme['gray-700']};
 
     border-radius: 8px;
+
+    @media (max-width: 908px) {
+      max-width: 3rem;
+      height: 8.375rem;
+
+      font-size: 88px;
+    }
   }
 
   p {
@@ -36,5 +47,9 @@ export const ContainerCounter = styled.div`
     align-items: center;
 
     color: ${(props) => props.theme['green-500']};
+
+    @media (max-width: 908px) {
+      font-size: 90px;
+    }
   }
 `
